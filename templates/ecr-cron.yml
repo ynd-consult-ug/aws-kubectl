@@ -15,18 +15,27 @@ spec:
           terminationGracePeriodSeconds: 0
           restartPolicy: Never
           containers:
-          - name: kubectl
+          - name: updater
             imagePullPolicy: Always
-            image: odaniait/aws-kubectl:latest
+            image: yndconsult/aws-kubectl:latest
             command:
               - "/run.sh"
             env:
               - name: AWS_ACCOUNT
-                value: "YOUR-AWS-ACCOUNT"
+                valueFrom:
+                  secretKeyRef:
+                    name: aws-secrets
+                    key: aws-account
               - name: AWS_REGION
-                value: "eu-central-1"
+                valueFrom:
+                  secretKeyRef:
+                    name: aws-secrets
+                    key: aws-region
               - name: NAMESPACES
-                value: "infrastructure live"
+                valueFrom:
+                  secretKeyRef:
+                    name: aws-secrets
+                    key: namespaces
               - name: AWS_ACCESS_KEY_ID
                 valueFrom:
                   secretKeyRef:

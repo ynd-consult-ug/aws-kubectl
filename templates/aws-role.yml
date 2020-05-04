@@ -16,7 +16,7 @@ rules:
   verbs: ["patch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
+kind: RoleBinding
 metadata:
   name: role-aws-authorization-binding
 roleRef:
@@ -26,4 +26,3 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: ecr-update-service-account
-  namespace: infrastructure
