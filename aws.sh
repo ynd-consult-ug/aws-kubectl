@@ -24,7 +24,7 @@ kubectl create secret generic aws-secrets \
   --from-literal="aws-secret-access-key=$AWS_SECRET_ACCESS_KEY" \
   --from-literal="aws-region=$AWS_REGION" \
   --from-literal="aws-account=$AWS_ACCOUNT" \
-  --from-literal="namespaces=\'$NAMESPACES\'" \
+  --from-literal="namespaces=$NAMESPACES" \
   --dry-run=client \
   -o yaml| kubectl apply -f-
 
